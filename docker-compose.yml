@@ -30,6 +30,6 @@ services:
      - "3000:3000"
     environment:
       - PORT=3000
-      - DATABASE_URL=postgresql://admin:password@postgres:5432/star_wars?connect_timeout=300
+      - DATABASE_URL=postgresql://admin:password@postgres:5432/star_wars
     volumes:
       - ./:/src

@@ -1,0 +1,11 @@
+
+model TvSeries {
+  id                Int  @id @default(autoincrement())
+  title             String
+  startYear         Int
+  endYear           Int
+  
+  episodes          TvSeriesEpisode[]
+
+  @@map("tv_series")
+}

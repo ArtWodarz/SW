@@ -1,0 +1,12 @@
+model TvSeriesEpisode {
+  id                Int  @id @default(autoincrement())
+  title             String
+  episodeNumber     Int     @map("episode_number")
+  narrativeUnitId   Int  @unique @map("narrative_unit_id")
+  tvSeriesId        Int  @map("tv_series_id")
+
+  narrativeUnit     NarrativeUnit   @relation(fields: [narrativeUnitId], references: [id])
+  tvSeries          TvSeries        @relation(fields: [tvSeriesId], references: [id])
+
+  @@map("tv_series_episodes")
+}
