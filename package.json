@@ -25,6 +25,7 @@
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
     "@prisma/client": "^6.5.0",
+    "logger": "^0.0.1",
     "zod": "^3.24.2"
   },
   "devDependencies": {
