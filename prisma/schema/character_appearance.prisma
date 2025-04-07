@@ -2,8 +2,8 @@ model CharacterAppearance {
   narrativeUnitId Int @map("narrative_unit_id")
   characterId     Int @map("character_id")
 
-  narrativeUnit NarrativeUnit @relation(fields: [narrativeUnitId], references: [id])
-  character     Character     @relation(fields: [characterId], references: [id])
+  narrativeUnit NarrativeUnit @relation(fields: [narrativeUnitId], references: [id], onDelete: Cascade, onUpdate: Cascade )
+  character     Character     @relation(fields: [characterId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([narrativeUnitId, characterId])
   @@map("character_appearances")

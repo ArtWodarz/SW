@@ -1,10 +1,10 @@
 model Movie {
-  id              Int @id @default(autoincrement())
   title           String
   year            Int
   narrativeUnitId Int @unique @map("narrative_unit_id")
 
-  narrativeUnit NarrativeUnit @relation(fields: [narrativeUnitId], references: [id])
+  narrativeUnit NarrativeUnit @relation(fields: [narrativeUnitId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
+  @@id([narrativeUnitId])
   @@map("movies")
 }

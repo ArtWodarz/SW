@@ -3,7 +3,8 @@ import { PrismaService } from '../../utils/prisma.service';
 import { CreateMovieDto } from './DTO/create-movie.DTO';
 import { MovieDto } from './DTO/movie.DTO';
 import { UpdateMovieDto } from './DTO/update-movie.DTO';
-import { FindMoviesFilters } from './DTO/findMoviesFiltersDTO.';
+import { FindMoviesFilters } from './DTO/find-movies-filters.DTO.';
+import { ResourceNotFoundError } from 'src/utils/errors/Resource-Not-Found-Error';
 
 @Injectable()
 export class MoviesService {
@@ -22,7 +23,7 @@ export class MoviesService {
       return movie;
     });
     return {
-      id: movie.id,
+      id: movie.narrativeUnitId,
       title: movie.title,
       year: movie.year,
     };
@@ -60,7 +61,7 @@ export class MoviesService {
       ],
     });
     return movies.map((movie) => ({
-      id: movie.id,
+      id: movie.narrativeUnitId,
       title: movie.title,
       year: movie.year,
     }));
@@ -86,19 +87,29 @@ export class MoviesService {
   }
 
   async update(id: number, movieDto: UpdateMovieDto): Promise<MovieDto> {
-    return this.prisma.movie.update({
+    const movie = await this.prisma.movie.update({
       where: {
-        id,
+        narrativeUnitId: id,
       },
       data: movieDto,
     });
+    return {
+      id: movie.narrativeUnitId,
+      title: movie.title,
+      year: movie.year,
+    };
   }
 
-  async delete(id: number): Promise<MovieDto> {
-    return this.prisma.movie.delete({
+  async delete(id: number): Promise<void> {
+    const movie = await this.prisma.movie.findFirst({
+      where: { narrativeUnitId: id },
+    });
+    if (!movie) throw new ResourceNotFoundError('NOT FOUND');
+    await this.prisma.movie.delete({
       where: {
-        id,
+        narrativeUnitId: id,
       },
     });
+    return;
   }
 }
