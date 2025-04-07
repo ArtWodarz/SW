@@ -1,4 +1,4 @@
-import { z } from 'zod';
 import { createCharacterSchema } from '../validation-schemas/create-character.schema';
+import { createZodDto } from 'nestjs-zod';
 
-export type CreateCharacterDto = z.infer<typeof createCharacterSchema>;
+export class CreateCharacterDto extends createZodDto(createCharacterSchema) {}

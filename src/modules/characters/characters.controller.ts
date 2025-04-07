@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpException,
@@ -93,9 +94,8 @@ export class CharactersController {
     }
   }
 
-  @Patch(':id')
+  @Delete(':id')
   @HttpCode(204)
-  @UsePipes(new ZodValidationPipe(createCharacterSchema))
   async delete(@Param('id', ParseIntPipe) id: number) {
     try {
       await this.charactersService.delete(id);

@@ -1,3 +1,4 @@
-import { CreateCharacterDto } from './create-character.DTO';
+import { createZodDto } from 'nestjs-zod';
+import { createCharacterSchema } from '../validation-schemas/create-character.schema';
 
-export type UpdateCharacterDto = CreateCharacterDto;
+export class UpdateCharacterDto extends createZodDto(createCharacterSchema) {}

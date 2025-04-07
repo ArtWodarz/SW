@@ -5,7 +5,7 @@ import { CreateCharacterDto } from './DTO/create-character.DTO';
 import { DuplicateResourceError } from '../../utils/errors/Duplicate-Resource-Error';
 import { SubresourceDoesNotExistsError } from '../../utils/errors/Subresource-Does-not-exists';
 import { UpdateCharacterDto } from './DTO/update-character.DTO';
-import { ResourceNotFoundError } from 'src/utils/errors/Resource-Not-Found-Error';
+import { ResourceNotFoundError } from '../../utils/errors/Resource-Not-Found-Error';
 
 @Injectable()
 export class CharactersService {

@@ -1,4 +1,4 @@
-import { z } from 'zod';
 import { createMovieSchema } from '../validation-schemas/create-movie.schema';
+import { createZodDto } from 'nestjs-zod';
 
-export type CreateMovieDto = z.infer<typeof createMovieSchema>;
+export class CreateMovieDto extends createZodDto(createMovieSchema) {}

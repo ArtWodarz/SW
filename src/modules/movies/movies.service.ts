@@ -4,7 +4,7 @@ import { CreateMovieDto } from './DTO/create-movie.DTO';
 import { MovieDto } from './DTO/movie.DTO';
 import { UpdateMovieDto } from './DTO/update-movie.DTO';
 import { FindMoviesFilters } from './DTO/find-movies-filters.DTO.';
-import { ResourceNotFoundError } from 'src/utils/errors/Resource-Not-Found-Error';
+import { ResourceNotFoundError } from '../../utils/errors/Resource-Not-Found-Error';
 
 @Injectable()
 export class MoviesService {
